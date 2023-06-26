@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,11 +16,12 @@ import com.magic.handler.PatientNotFoundException;
 import com.magic.service.PatientService;
 
 @RestController
+@CrossOrigin("http://localhost:3000/")
 @RequestMapping("patient")
 public class PatientController {
 	@Autowired
 	PatientService patientService;
-
+	@CrossOrigin("http://localhost:3000/")
 	@PostMapping("add-patient")
 	public ResponseEntity<Patient> savePatient(@Valid @RequestBody Patient patient) {
 		Patient patient1 = patientService.getPatientById(patient.getPid());
